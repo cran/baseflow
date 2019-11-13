@@ -1,0 +1,17 @@
+[package]
+name = "rustlib"
+version = "0.11.1"
+
+[dependencies]
+rustr = "*"
+rayon = "*"
+roots = "*"
+
+[lib]
+name = "rustlib"
+crate-type = ["staticlib","rlib"]
+
+[profile.release]
+opt-level = 'z'
+lto = true
+codegen-units = 1

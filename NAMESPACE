@@ -1,0 +1,19 @@
+useDynLib(baseflow, .registration = TRUE)
+import(airGR)
+importFrom("graphics", "lines")
+importFrom("methods", "new", "show")
+
+# Custom classes
+exportClasses(BasinData)
+exportClasses(BaseflowFilter)
+
+# Custom functions
+export(BasinData)
+export(BaseflowFilter)
+export(perform_filtering)
+export(bfi)
+export(corr_crit)
+export(corr_crit_vect)
+
+# Custom methods
+exportMethods("plot", "show", "print", "as.data.frame", "summary")

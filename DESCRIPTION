@@ -1,0 +1,30 @@
+Package: baseflow
+Type: Package
+Title: Computes Hydrograph Separation
+Version: 0.11.2
+Date: 2019-11-05
+Authors@R: c(
+    person(given = "Antoine", family = "Pelletier", email = "antoine.pelletier@irstea.fr", role = c("cre", "aut"),
+      comment = c(ORCID = "0000-0002-1286-9147")),
+    person(given = "Vazken", family = "Andréassian", email = "vazken.andreassian@irstea.fr", role = c("ths", "rev"),
+      comment = c(ORCID = "0000-0001-7124-9303")),
+    person(given = "Olivier", family = "Delaigue", email = "airGR@irstea.fr", role = c("rev", "ctb", "dtc"),
+      comment = c(ORCID = "0000-0002-7668-8468"))
+  )
+Depends: R (>= 3.0.3)
+Imports: methods, graphics, airGR
+Description: Computes hydrograph separation using the conceptual automated process from Pelletier and Andreassian (2019) <doi:10.5194/hess-2019-503>. Contains scalar and vectorized functions to compute correlation criterion to calibrate the baseflow separation model. 
+License: GPL-2
+SystemRequirements: cargo (>= 1.36.0), rustc, GNU make
+Collate: REXPORT.R BasinData.R BaseflowFilter.R Criteria.R
+Contact: antoine.pelletier@irstea.fr
+Encoding: UTF-8
+NeedsCompilation: yes
+Packaged: 2019-11-05 10:03:30 UTC; antoine.pelletier
+Author: Antoine Pelletier [cre, aut] (<https://orcid.org/0000-0002-1286-9147>),
+  Vazken Andréassian [ths, rev] (<https://orcid.org/0000-0001-7124-9303>),
+  Olivier Delaigue [rev, ctb, dtc]
+    (<https://orcid.org/0000-0002-7668-8468>)
+Maintainer: Antoine Pelletier <antoine.pelletier@irstea.fr>
+Repository: CRAN
+Date/Publication: 2019-11-13 16:20:02 UTC
