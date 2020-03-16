@@ -17,13 +17,19 @@ osType <- function() {
 }
 osType <- osType()
 
+if(!(osType %in% c('windows', 'macosx', 'linux'))){
+  cat(paste0(osType, ' is not a supported platform.\n',
+             'Please use baseflow package with Windows, GNU/Linux or Mac OS.\n'))
+  quit(status = 1)
+}
+
 # Detecting cargo installed version
 requiredCargoVersion <- "1.36.0"
 cat(paste0("Cargo version ", requiredCargoVersion, " or newer is required for compilation.\n"))
 
 if(!cargo_is_found && (osType != 'windows')){
   cat("Cargo is a requirement to compile the Rust library. Please visit https://rustup.rs to install it. You do not need admin rights.\n")
-  quit()
+  quit(status = 1)
 }
 if(cargo_is_found && (osType == 'windows')){
   installedCargoVersion <- gsub("cargo ([^ ]+).*", "\\1", system2("cargo","--version",stdout=TRUE))
@@ -38,12 +44,42 @@ if(cargo_is_found && (osType == 'windows')){
     quit(status = 0)
   } else {
     cat("Cargo version too old. Run rustup update in a terminal.\n")
+    quit(status = 1)
+  }
+}
+if(cargo_is_found && (osType != 'windows')){
+  installedCargoVersion <- gsub("cargo ([^ ]+).*", "\\1", system2("cargo","--version",stdout=TRUE))
+  cat(paste0("Cargo version ", installedCargoVersion, " found.\n"))
+  installedCargoVersion <- strsplit(installedCargoVersion, '-')[[1]][1]
+  is_installed_newer <- (compareVersion(installedCargoVersion, requiredCargoVersion) > 0)
+  
+  # Compiling if cargo version is OK
+  if(is_installed_newer){
+    cat("Compiling the Rust library.\n")
+    system2("cargo",c("build","--release","--manifest-path=rustlib/Cargo.toml"))
+    quit(status = 0)
+  } else {
+    cat("Cargo version too old. Run rustup update in a terminal.\n")
+    quit(status = 1)
   }
 }
 
 # Using pre-compiled shared library on Windows
-cat("Getting pre-compiled Rust library.\n")
-destDir <- sprintf("rustlib/target/%s/release", target)
-headDir <- if ( substr(target,1,3) == "x86" ) "x64" else "i386"
-dir.create(destDir, recursive = TRUE)
-file.copy(from = paste0('../tools/', target), to = 'rustlib/target', recursive = TRUE)
+if(!cargo_is_found && (osType == 'windows')){
+  cat("Downloading pre-compiled Rust library.\n")
+  download.file('https://gitlab.irstea.fr/HYCAR-Hydro/baseflow/-/raw/master/tools/tools.tar.gz',
+                destfile = 'tools.tar.gz')
+  dir.create('./ext_tools')
+  untar('tools.tar.gz', list = FALSE, exdir = './ext_tools')
+  
+  destDir <- sprintf("rustlib/target/%s/release", target)
+  dir.create(destDir, recursive = TRUE)
+  
+  files_list <- c('librustlib.d', 'librustlib.rlib', 'rustlib.d', 'rustlib.lib')
+  for(f in files_list){
+    file.copy(from = paste0('./ext_tools/', target, '/release/', f),
+              to = paste0(destDir, '/', f), overwrite = TRUE)
+    file.remove(paste0('./ext_tools/', target, '/release/', f))
+  }
+}
+

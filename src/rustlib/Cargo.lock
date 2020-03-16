@@ -105,7 +105,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 
 [[package]]
 name = "rustlib"
-version = "0.1.0"
+version = "0.11.1"
 dependencies = [
  "rayon 1.0.3 (registry+https://github.com/rust-lang/crates.io-index)",
  "roots 0.0.5 (registry+https://github.com/rust-lang/crates.io-index)",

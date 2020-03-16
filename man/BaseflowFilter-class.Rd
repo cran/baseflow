@@ -35,7 +35,7 @@ Objects can be created by calls of the form \code{new("BaseflowFilter", ...)}, b
 	 }
 }
 \references{
-Pelletier, A. and Andréassian, V.: Hydrograph separation: an impartial parametrization for an imperfect method, Hydrol. Earth Syst. Sci. Discuss., \url{https://doi.org/10.5194/hess-2019-503}, in review, 2019
+Pelletier, A. and Andréassian, V.: Hydrograph separation: an impartial parametrisation for an imperfect method, Hydrol. Earth Syst. Sci., 24, 1171–1187, \url{https://doi.org/10.5194/hess-24-1171-2020}, 2020
 }
 \author{
 Pelletier and Andreassian (\email{antoine.pelletier@irstea.fr})

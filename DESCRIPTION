@@ -1,30 +1,33 @@
 Package: baseflow
 Type: Package
 Title: Computes Hydrograph Separation
-Version: 0.11.2
-Date: 2019-11-05
+Version: 0.12.0
+Date: 2020-03-12
 Authors@R: c(
-    person(given = "Antoine", family = "Pelletier", email = "antoine.pelletier@irstea.fr", role = c("cre", "aut"),
+    person(given = "Antoine", family = "Pelletier", email = "antoine.pelletier@inrae.fr", role = c("cre", "aut"),
       comment = c(ORCID = "0000-0002-1286-9147")),
-    person(given = "Vazken", family = "Andréassian", email = "vazken.andreassian@irstea.fr", role = c("ths", "rev"),
+    person(given = "Vazken", family = "Andréassian", email = "vazken.andreassian@inrae.fr", role = c("ths", "rev"),
       comment = c(ORCID = "0000-0001-7124-9303")),
-    person(given = "Olivier", family = "Delaigue", email = "airGR@irstea.fr", role = c("rev", "ctb", "dtc"),
+    person(given = "Olivier", family = "Delaigue", email = "airGR@inrae.fr", role = c("rev", "ctb", "dtc"),
       comment = c(ORCID = "0000-0002-7668-8468"))
   )
 Depends: R (>= 3.0.3)
-Imports: methods, graphics, airGR
+Imports: methods, graphics, airGR (>= 1.2.13.16)
 Description: Computes hydrograph separation using the conceptual automated process from Pelletier and Andreassian (2019) <doi:10.5194/hess-2019-503>. Contains scalar and vectorized functions to compute correlation criterion to calibrate the baseflow separation model. 
 License: GPL-2
-SystemRequirements: cargo (>= 1.36.0), rustc, GNU make
+SystemRequirements: GNU make, Cargo (>= 1.36.0) [the Rust package
+        manager] for installation from sources: see file INSTALL
 Collate: REXPORT.R BasinData.R BaseflowFilter.R Criteria.R
 Contact: antoine.pelletier@irstea.fr
 Encoding: UTF-8
+URL: https://gitlab.irstea.fr/HYCAR-Hydro/baseflow,
+        https://doi.org/10.15454/Z9IK5N
 NeedsCompilation: yes
-Packaged: 2019-11-05 10:03:30 UTC; antoine.pelletier
+Packaged: 2020-03-13 15:39:43 UTC; antoine.pelletier
 Author: Antoine Pelletier [cre, aut] (<https://orcid.org/0000-0002-1286-9147>),
   Vazken Andréassian [ths, rev] (<https://orcid.org/0000-0001-7124-9303>),
   Olivier Delaigue [rev, ctb, dtc]
     (<https://orcid.org/0000-0002-7668-8468>)
-Maintainer: Antoine Pelletier <antoine.pelletier@irstea.fr>
+Maintainer: Antoine Pelletier <antoine.pelletier@inrae.fr>
 Repository: CRAN
-Date/Publication: 2019-11-13 16:20:02 UTC
+Date/Publication: 2020-03-16 12:40:02 UTC
