@@ -1,4 +1,4 @@
-a9b26c16c82988faa87cb380f7b2a3a7 *DESCRIPTION
+fcf1eafec664ce8401505ad2df1229f0 *DESCRIPTION
 d6c798c24a5ef65f2c6f93fe56617042 *INSTALL
 07b49f8c628b4427ce695a18456cc835 *NAMESPACE
 a411c148b49f5a167170e25f02e5cc5e *R/BaseflowFilter.R
@@ -20,11 +20,11 @@ bfc8c62ad80b5c856c5fbb6f86c0ef97 *src/Makevars.win
 dbb24cfb694faa202d645f9fbb1fbd0d *src/Makevars.win.old
 16b0522e57012493d9a34d89a732e932 *src/REXPORT.c
 244e407caec55b90be9119f623d2b40b *src/packagename_init.c
-0b15683ff273a9827890e55f80d8e5ec *src/rustlib/Cargo.lock
-88b61564f4747d23bdc6de94c454f792 *src/rustlib/Cargo.toml
+249c3e49229edcdf958cbb24c1e94490 *src/rustlib/Cargo.lock
+12c9e585fc3ad3436a73fd6126f222ff *src/rustlib/Cargo.toml
 43cac69cf0a819a6fcf3e1d829a7483e *src/rustlib/src/export.rs
 1bb6a02ccf3d605023db71d17d542138 *src/rustlib/src/filter/mod.rs
 570bc2ac03f2214545c268f4527ff3c1 *src/rustlib/src/filter/rain.rs
 e977d73e734d7bd4946b78e6180fa866 *src/rustlib/src/filter/reservoir.rs
 45f210a1926f3c584cb8036db1cf0fb5 *src/rustlib/src/lib.rs
-6b4e71ef66d8aaa2cc4f4346e37863c0 *tools/staticlib.R
+4c5d0eb7def4b40cf07fa23835ce35e3 *tools/staticlib.R

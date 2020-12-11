@@ -24,7 +24,7 @@ if(!(osType %in% c('windows', 'macosx', 'linux'))){
 }
 
 # Detecting cargo installed version
-requiredCargoVersion <- "1.36.0"
+requiredCargoVersion <- "1.42.0"
 cat(paste0("Cargo version ", requiredCargoVersion, " or newer is required for compilation.\n"))
 
 if(!cargo_is_found && (osType != 'windows')){
@@ -57,6 +57,7 @@ if(cargo_is_found && (osType != 'windows')){
   if(is_installed_newer){
     cat("Compiling the Rust library.\n")
     system2("cargo",c("build","--release","--manifest-path=rustlib/Cargo.toml"))
+    system2("strip", c("--strip-unneeded", "rustlib/target/release/librustlib.a"))
     quit(status = 0)
   } else {
     cat("Cargo version too old. Run rustup update in a terminal.\n")
@@ -75,7 +76,7 @@ if(!cargo_is_found && (osType == 'windows')){
   destDir <- sprintf("rustlib/target/%s/release", target)
   dir.create(destDir, recursive = TRUE)
   
-  files_list <- c('librustlib.d', 'librustlib.rlib', 'rustlib.d', 'rustlib.lib')
+  files_list <- c('librustlib.d', 'librustlib.rlib', 'librustlib.a')
   for(f in files_list){
     file.copy(from = paste0('./ext_tools/', target, '/release/', f),
               to = paste0(destDir, '/', f), overwrite = TRUE)
