@@ -26,7 +26,7 @@ Character string giving reservoir function : must be one of \code{"quadr"}, \cod
 A \code{BaseflowFilter} object containing provided data. Baseflow numeric field \code{R} and reservoir level \code{V} are filled with \code{NA}, it is thus necessary to call \code{perform_filtering} function to compute \code{R} and \code{V}.
 }
 \references{
-Pelletier, A. and Andréassian, V.: Hydrograph separation: an impartial parametrisation for an imperfect method, Hydrol. Earth Syst. Sci., 24, 1171–1187, \url{https://doi.org/10.5194/hess-24-1171-2020}, 2020
+Pelletier, A. and Andréassian, V.: Hydrograph separation: an impartial parametrisation for an imperfect method, Hydrol. Earth Syst. Sci., 24, 1171–1187, \doi{10.5194/hess-24-1171-2020}, 2020
 }
 \author{
 Pelletier and Andreassian (\email{antoine.pelletier@irstea.fr})

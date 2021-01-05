@@ -34,7 +34,7 @@ Objects can be created by calls of the form \code{new("BasinData", ...)}, but it
 	 }
 }
 \references{
-Pelletier, A. and Andréassian, V.: Hydrograph separation: an impartial parametrisation for an imperfect method, Hydrol. Earth Syst. Sci., 24, 1171–1187, \url{https://doi.org/10.5194/hess-24-1171-2020}, 2020
+Pelletier, A. and Andréassian, V.: Hydrograph separation: an impartial parametrisation for an imperfect method, Hydrol. Earth Syst. Sci., 24, 1171–1187, \doi{10.5194/hess-24-1171-2020}, 2020
 }
 \author{
 Pelletier and Andreassian (\email{antoine.pelletier@irstea.fr})

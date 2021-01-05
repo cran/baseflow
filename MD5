@@ -1,4 +1,4 @@
-fcf1eafec664ce8401505ad2df1229f0 *DESCRIPTION
+17c688e6ad99108d02316051e7da9797 *DESCRIPTION
 d6c798c24a5ef65f2c6f93fe56617042 *INSTALL
 07b49f8c628b4427ce695a18456cc835 *NAMESPACE
 a411c148b49f5a167170e25f02e5cc5e *R/BaseflowFilter.R
@@ -6,15 +6,16 @@ a411c148b49f5a167170e25f02e5cc5e *R/BaseflowFilter.R
 87be06cdae0740391a6c94af98a783d2 *R/Criteria.R
 02dfc524f20d60b9fa2968a31dee5ae0 *R/REXPORT.R
 1486b4855ea7b1d598ba8f34aee2462e *README.md
+07087141fac8845d1871df953fcb126b *build/partial.rdb
 2baa260ab33a281f98e6dedf953b750b *inst/CITATION
-d87be338e7c0e8ab97b71014203b2732 *man/BaseflowFilter-class.Rd
-504650d3651e7b9f915288ef1b120c45 *man/BaseflowFilter.Rd
-50120902a59b269ed474f211a43953b0 *man/BasinData-class.Rd
-98697f3f4211de1c631412a435660832 *man/BasinData.Rd
-5f11c1c4fdf9305f230a7714141b48b2 *man/bfi.Rd
-b5f0c99d1e227ad32dfbc717f9124efa *man/correlation_criteria.Rd
-fe9e1811ef9f6ecb8e6e29b8033f1c1f *man/correlation_criteria_vectorized.Rd
-b3bd5d491df3e660c364f46d7870344d *man/performFiltering.Rd
+6adfeff0c3cc1fbd7df55e2f8f06a614 *man/BaseflowFilter-class.Rd
+4df54179ca226985e20b4777f2ca2ea1 *man/BaseflowFilter.Rd
+442069ed7ee01faf5a48d8d204ceab38 *man/BasinData-class.Rd
+b0252c14923e02f4541a4cb8881db752 *man/BasinData.Rd
+6eb9573e6bdb7ec1554b2140586b7287 *man/bfi.Rd
+6c9f465b293c3caebb0573fcf3e3c590 *man/correlation_criteria.Rd
+0d05062501ce984d60b47e0182b2425b *man/correlation_criteria_vectorized.Rd
+b5f6c2ae746aaf52298d7371f3d8ebef *man/performFiltering.Rd
 1881bf5720371eb35143a5b607ebedc6 *src/Makevars
 bfc8c62ad80b5c856c5fbb6f86c0ef97 *src/Makevars.win
 dbb24cfb694faa202d645f9fbb1fbd0d *src/Makevars.win.old
@@ -27,4 +28,4 @@ dbb24cfb694faa202d645f9fbb1fbd0d *src/Makevars.win.old
 570bc2ac03f2214545c268f4527ff3c1 *src/rustlib/src/filter/rain.rs
 e977d73e734d7bd4946b78e6180fa866 *src/rustlib/src/filter/reservoir.rs
 45f210a1926f3c584cb8036db1cf0fb5 *src/rustlib/src/lib.rs
-4c5d0eb7def4b40cf07fa23835ce35e3 *tools/staticlib.R
+28b07990b7ed130386508cd87f961633 *tools/staticlib.R

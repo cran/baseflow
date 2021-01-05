@@ -34,7 +34,7 @@ Usage of gradient-based optimization algorithms is not recommended to find the m
 A numeric value of the computed criterion, between -1 and 1.
 }
 \references{
-Pelletier, A. and Andréassian, V.: Hydrograph separation: an impartial parametrisation for an imperfect method, Hydrol. Earth Syst. Sci., 24, 1171–1187, \url{https://doi.org/10.5194/hess-24-1171-2020}, 2020
+Pelletier, A. and Andréassian, V.: Hydrograph separation: an impartial parametrisation for an imperfect method, Hydrol. Earth Syst. Sci., 24, 1171–1187, \doi{10.5194/hess-24-1171-2020}, 2020
 }
 \author{
 Pelletier and Andreassian (\email{antoine.pelletier@irstea.fr})

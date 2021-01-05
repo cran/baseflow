@@ -27,7 +27,7 @@ if(!(osType %in% c('windows', 'macosx', 'linux'))){
 requiredCargoVersion <- "1.42.0"
 cat(paste0("Cargo version ", requiredCargoVersion, " or newer is required for compilation.\n"))
 
-if(!cargo_is_found && (osType != 'windows')){
+if(!cargo_is_found && (osType == 'linux')){
   cat("Cargo is a requirement to compile the Rust library. Please visit https://rustup.rs to install it. You do not need admin rights.\n")
   quit(status = 1)
 }
@@ -57,7 +57,11 @@ if(cargo_is_found && (osType != 'windows')){
   if(is_installed_newer){
     cat("Compiling the Rust library.\n")
     system2("cargo",c("build","--release","--manifest-path=rustlib/Cargo.toml"))
-    system2("strip", c("--strip-unneeded", "rustlib/target/release/librustlib.a"))
+    if(osType == 'macosx'){
+      system2("strip", c("-x", "rustlib/target/release/librustlib.a"))
+    } else {
+      system2("strip", c("--strip-unneeded", "rustlib/target/release/librustlib.a"))
+    }
     quit(status = 0)
   } else {
     cat("Cargo version too old. Run rustup update in a terminal.\n")
@@ -65,7 +69,25 @@ if(cargo_is_found && (osType != 'windows')){
   }
 }
 
-# Using pre-compiled shared library on Windows
+# Using pre-compiled shared library on Windows and MacOS
+if(!cargo_is_found && (osType == 'macosx')){
+  target <- "x86_64-apple-darwin"
+  cat("Downloading pre-compiled Rust library.\n")
+  download.file('https://gitlab.irstea.fr/HYCAR-Hydro/baseflow/-/raw/master/tools/tools.tar.gz',
+                destfile = 'tools.tar.gz')
+  dir.create('./ext_tools')
+  untar('tools.tar.gz', list = FALSE, exdir = './ext_tools')
+  
+  destDir <- "rustlib/target/release"
+  dir.create(destDir, recursive = TRUE)
+  
+  files_list <- c('librustlib.d', 'librustlib.rlib', 'librustlib.a')
+  for(f in files_list){
+    file.copy(from = paste0('./ext_tools/', target, '/release/', f),
+              to = paste0(destDir, '/', f), overwrite = TRUE)
+    file.remove(paste0('./ext_tools/', target, '/release/', f))
+  }
+}
 if(!cargo_is_found && (osType == 'windows')){
   cat("Downloading pre-compiled Rust library.\n")
   download.file('https://gitlab.irstea.fr/HYCAR-Hydro/baseflow/-/raw/master/tools/tools.tar.gz',
@@ -83,4 +105,3 @@ if(!cargo_is_found && (osType == 'windows')){
     file.remove(paste0('./ext_tools/', target, '/release/', f))
   }
 }
-
