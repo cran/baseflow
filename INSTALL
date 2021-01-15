@@ -2,7 +2,7 @@
 
 ### Requirements
 
-This package has been tested on Linux (openSUSE Leap 15.0 x64) and Windows (7 and 10). It is developed with cross-platform languages (Rust and R) so it is supposed to work on other platforms. Package is available as binaries for Windows and as sources, that need to be compiled, for other operating systems.
+This package has been tested on Linux (openSUSE Leap 15.0 x64), Windows (7 and 10) and macOS (10.15 Catalina). It is developed with cross-platform languages (Rust and R) so it is supposed to work on other platforms. Package is available as binaries for Windows and macOS and as sources, that need to be compiled, for other operating systems.
 
 Software requirements for the binary installation are the following:
 
@@ -12,7 +12,7 @@ Software requirements for the binary installation are the following:
 For the source compilation, in addition to the requirements above, the following are needed:
 
 * **Rtools** for Windows (available [here](https://cran.r-project.org/bin/windows/Rtools/)) or a building environmment on other platforms, generally installed with R on linux distributions. At least, a C/C++ compiler like a recent version of `gcc`
-* **cargo** Rust compilation platform. Detailed installation instructions are given below.
+* **cargo** Rust compilation platform, version 1.42 or above. Detailed installation instructions are given below.
 
 ### Rust platform
 
@@ -30,15 +30,15 @@ modify PATH variable: yes
 
 Then, choose the first option `Proceed with installation`.
 
-On 64-bits Windows systems, you also need to install the x64 toolchain. After installation, open a terminal and type:
+On 64-bits Windows systems, you also need to install the x64 target. After installation, open a terminal and type:
 
 ```
 rustup target add x86_64-pc-windows-gnu
 ```
 
-#### GNU/Linux
+#### Unix systems
 
-On GNU/Linux platforms, launch the following command into a terminal:
+On GNU/Linux platforms and other Unix systems, launch the following command into a terminal:
 
 ```
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh

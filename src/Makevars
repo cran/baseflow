@@ -7,9 +7,10 @@ endif
 
 .PHONY: all
 
+PKG_CFLAGS = $(SHLIB_OPENMP_CFLAGS)
 LIBDIR = rustlib/target/release
 STATLIB = $(LIBDIR)/librustlib.rlib
-PKG_LIBS= $(LAPACK_LIBS) $(BLAS_LIBS) $(FLIBS) -L. -L$(LIBDIR) -lrustlib
+PKG_LIBS= $(LAPACK_LIBS) $(BLAS_LIBS) $(FLIBS) -L. -L$(LIBDIR) -lrustlib $(SHLIB_OPENMP_CFLAGS)
 
 $(SHLIB): $(STATLIB)
 
@@ -27,4 +28,4 @@ $(STATLIB):
 	"${R_HOME}/bin${R_ARCH_BIN}/Rscript" ../tools/staticlib.R "$(TARGET)"
 
 clean:
-	rm -Rf $(SHLIB) $(STATLIB) $(OBJECTS)
+	rm -Rf $(SHLIB) $(STATLIB) $(OBJECTS) rustlib/target

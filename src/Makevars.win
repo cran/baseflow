@@ -12,9 +12,10 @@ else
 	TARGET=i686-pc-windows-gnu
 endif
 
+PKG_CFLAGS = $(SHLIB_OPENMP_CFLAGS)
 LIBDIR = rustlib/target/$(TARGET)/release
 STATLIB = $(LIBDIR)/librustlib.rlib
-PKG_LIBS= $(LAPACK_LIBS) $(BLAS_LIBS) $(FLIBS) -L. -L$(LIBDIR) -lrustlib -lws2_32 -luserenv -lshell32 -ladvapi32
+PKG_LIBS= $(LAPACK_LIBS) $(BLAS_LIBS) $(FLIBS) -L. -L$(LIBDIR) -lrustlib -lws2_32 -luserenv -lshell32 -ladvapi32 $(SHLIB_OPENMP_CFLAGS)
 
 $(SHLIB): $(STATLIB)
 
@@ -31,4 +32,4 @@ $(STATLIB):
 	"${R_HOME}/bin${R_ARCH_BIN}/Rscript" ../tools/staticlib.R "$(TARGET)"
 
 clean:
-	rm -Rf $(SHLIB) $(STATLIB) $(OBJECTS)
+	rm -Rf $(SHLIB) $(STATLIB) $(OBJECTS) rustlib/target
