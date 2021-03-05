@@ -1,9 +1,9 @@
 # Where is Cargo ? game
-ifneq "$(strip $(CARGO_HOME))" ""
-	CG=$(CARGO_HOME)
-else
-	CG=cargo
-endif
+#ifneq "$(strip $(CARGO_HOME))" ""
+#	CG=$(CARGO_HOME)
+#else
+#	CG=cargo
+#endif
 
 # Rust architecture (x64 or i686)
 ifeq "$(WIN)" "64"
@@ -23,10 +23,6 @@ $(SHLIB): $(STATLIB)
 
 # to make things
 all: $(SHLIB)
-
-# run cargo
-#$(STATLIB): rustlib/src/*.rs
-#	cd rustlib && $(CG) build --release --target $(TARGET)
 
 $(STATLIB):
 	"${R_HOME}/bin${R_ARCH_BIN}/Rscript" ../tools/staticlib.R "$(TARGET)"

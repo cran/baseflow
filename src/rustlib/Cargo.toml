@@ -1,11 +1,11 @@
 [package]
 name = "rustlib"
-version = "0.12.3"
+version = "0.13.0"
 
 [dependencies]
-rustr = "*"
 rayon = ">= 1.5.0"
 roots = "*"
+extendr-api = ">= 0.2.0"
 
 [lib]
 name = "rustlib"

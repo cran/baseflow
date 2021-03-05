@@ -2,8 +2,19 @@
 args <- commandArgs(TRUE)
 target <- if ( length(args) > 0 ) args[1] else NULL
 
-# Where is Cargo? game
-cargo_is_found <- (Sys.which("cargo") != "")
+# Finding cargo
+if(Sys.which("cargo") != ""){ # Searching for CARGO in PATH
+  cargo_is_found <- TRUE
+  cargo <- "cargo"
+} else if(file.exists(paste0(Sys.getenv("HOME"), "/.cargo/bin/cargo"))){ # Searching in ~/.cargo/bin on Unix
+  cargo_is_found <- TRUE
+  cargo <- paste0(Sys.getenv("HOME"), "/.cargo/bin/cargo")
+} else if(file.exists(paste0(Sys.getenv("USERPROFILE"), "/.cargo/bin/cargo.exe"))){ # Searching on Windows
+  cargo_is_found <- TRUE
+  cargo <- paste0(Sys.getenv("USERPROFILE"), "/.cargo/bin/cargo.exe")
+} else {
+  cargo_is_found <- FALSE
+}
 
 # Detecting OS type
 osType <- function() {
@@ -22,7 +33,6 @@ if(!(osType %in% c('windows', 'macosx', 'linux', 'macosx-arm'))){
   cat(paste0(osType, ' is not a supported platform.\n',
              'Compilation and installation may be possible if the Rust compiler is available.\n',
              'It is recommended to use baseflow package with Windows, GNU/Linux or macOS.\n'))
-  #quit(status = 1)
 }
 
 # Detecting cargo installed version
@@ -34,15 +44,23 @@ if(!cargo_is_found && !(osType %in% c("windows", "macosx", "macosx-arm"))){
   quit(status = 1)
 }
 if(cargo_is_found && (osType == 'windows')){
-  installedCargoVersion <- gsub("cargo ([^ ]+).*", "\\1", system2("cargo","--version",stdout=TRUE))
+  installedCargoVersion <- gsub("cargo ([^ ]+).*", "\\1", system2(cargo,"--version",stdout=TRUE))
   cat(paste0("Cargo version ", installedCargoVersion, " found.\n"))
   installedCargoVersion <- strsplit(installedCargoVersion, '-')[[1]][1]
   is_installed_newer <- (compareVersion(installedCargoVersion, requiredCargoVersion) >= 0)
   
   # Compiling if cargo version is OK
   if(is_installed_newer){
+    cargo_home_backup <- Sys.getenv("CARGO_HOME")
+    Sys.setenv(CARGO_HOME = paste0(getwd(), '/.cargo'))
+    if(!dir.exists(Sys.getenv("CARGO_HOME"))){
+      dir.create(Sys.getenv("CARGO_HOME"))
+    }
+    file.copy('../tools/config.toml', './.cargo/config.toml', overwrite = TRUE)
     cat("Compiling the Rust library.\n")
-    system2("cargo",c("build",paste0('--target ', target),"--release","--manifest-path=rustlib/Cargo.toml"))
+    system2(cargo,c("build",paste0('--target ', target),"--release","--manifest-path=rustlib/Cargo.toml"))
+    unlink('./.cargo', recursive = TRUE, force = TRUE)
+    Sys.setenv(CARGO_HOME = cargo_home_backup)
     quit(status = 0)
   } else {
     cat("Cargo version too old. Run rustup update in a terminal.\n")
@@ -50,20 +68,28 @@ if(cargo_is_found && (osType == 'windows')){
   }
 }
 if(cargo_is_found && (osType != 'windows')){
-  installedCargoVersion <- gsub("cargo ([^ ]+).*", "\\1", system2("cargo","--version",stdout=TRUE))
+  installedCargoVersion <- gsub("cargo ([^ ]+).*", "\\1", system2(cargo,"--version",stdout=TRUE))
   cat(paste0("Cargo version ", installedCargoVersion, " found.\n"))
   installedCargoVersion <- strsplit(installedCargoVersion, '-')[[1]][1]
   is_installed_newer <- (compareVersion(installedCargoVersion, requiredCargoVersion) >= 0)
   
   # Compiling if cargo version is OK
   if(is_installed_newer){
+    cargo_home_backup <- Sys.getenv("CARGO_HOME")
+    Sys.setenv(CARGO_HOME = paste0(getwd(), '/.cargo'))
+    if(!dir.exists(Sys.getenv("CARGO_HOME"))){
+      dir.create(Sys.getenv("CARGO_HOME"))
+    }
+    file.copy('../tools/config.toml', './.cargo/config.toml', overwrite = TRUE)
     cat("Compiling the Rust library.\n")
-    system2("cargo",c("build","--release","--manifest-path=rustlib/Cargo.toml"))
+    system2(cargo,c("build","--release","--manifest-path=rustlib/Cargo.toml"))
     if(osType == 'macosx'){
       system2("strip", c("-x", "rustlib/target/release/librustlib.a"))
     } else {
       system2("strip", c("--strip-unneeded", "rustlib/target/release/librustlib.a"))
     }
+    unlink('./.cargo', recursive = TRUE, force = TRUE)
+    Sys.setenv(CARGO_HOME = cargo_home_backup)
     quit(status = 0)
   } else {
     cat("Cargo version too old. Run rustup update in a terminal.\n")
@@ -87,8 +113,9 @@ if(!cargo_is_found && (osType == 'macosx')){
   for(f in files_list){
     file.copy(from = paste0('./ext_tools/', target, '/release/', f),
               to = paste0(destDir, '/', f), overwrite = TRUE)
-    file.remove(paste0('./ext_tools/', target, '/release/', f))
+    #file.remove(paste0('./ext_tools/', target, '/release/', f))
   }
+  unlink('./ext_tools', recursive = TRUE, force = TRUE)
 }
 if(!cargo_is_found && (osType == 'macosx-arm')){
   target <- "aarch64-apple-darwin"
@@ -105,8 +132,9 @@ if(!cargo_is_found && (osType == 'macosx-arm')){
   for(f in files_list){
     file.copy(from = paste0('./ext_tools/', target, '/release/', f),
               to = paste0(destDir, '/', f), overwrite = TRUE)
-    file.remove(paste0('./ext_tools/', target, '/release/', f))
+    #file.remove(paste0('./ext_tools/', target, '/release/', f))
   }
+  unlink('./ext_tools', recursive = TRUE, force = TRUE)
 }
 if(!cargo_is_found && (osType == 'windows')){
   cat("Downloading pre-compiled Rust library.\n")
@@ -122,6 +150,7 @@ if(!cargo_is_found && (osType == 'windows')){
   for(f in files_list){
     file.copy(from = paste0('./ext_tools/', target, '/release/', f),
               to = paste0(destDir, '/', f), overwrite = TRUE)
-    file.remove(paste0('./ext_tools/', target, '/release/', f))
+    #file.remove(paste0('./ext_tools/', target, '/release/', f))
   }
+  unlink('./ext_tools', recursive = TRUE, force = TRUE)
 }

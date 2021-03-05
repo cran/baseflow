@@ -6,7 +6,7 @@ This package has been tested on Linux (openSUSE Leap 15.0 x64), Windows (7 and 1
 
 Software requirements for the binary installation are the following:
 
-* **R** (package is developed with version 3.6.0)
+* **R** (package is developed with version 4.0.2)
 * **airGR** R package (available on CRAN or [here](https://webgr.irstea.fr/airGR-website))
 
 For the source compilation, in addition to the requirements above, the following are needed:
@@ -18,6 +18,13 @@ For the source compilation, in addition to the requirements above, the following
 
 General instructions to install the Rust compilation platform are given on the website [RustUp](https://rustup.rs/). It can be installed without administrator privileges - you do not need to ask your local computer technician that does not know Rust.
 
+#### Prior notice: PATH environment variable modification
+
+By default, the Rust compilation plaform is installed in `$HOME/.cargo` on Unix platforms and `%USERPROFILE%/.cargo` on Windows. This directory is then added to the PATH environment variable for the user to be able to use the toolchain without refering to the installation directory. 
+
+If you plan to use Rust for other purpose than installing `baseflow`, it is recommanded to set the *modify PATH variable* to *yes*. But if you only want to build and install *baseflow*, to avoid any side-effect of the installation, you should set this option to *no* as explained below.
+CRAN policy prevents published R packages to alter the user environment or filespace apart from the R session. Therefore, you should only change your PATH global variable if you know what you are doing.
+
 #### Windows
 
 On Windows, download and lauch the rustup-init.exe script (64 bits version is [here](https://win.rustup.rs/x86_64), 32 bits is [here](https://win.rustup.rs/i686)). In the command prompt window, choose the second option `Customize installation` and set configuration as below.
@@ -25,7 +32,7 @@ On Windows, download and lauch the rustup-init.exe script (64 bits version is [h
 ```
 default host triple: i686-pc-windows-gnu
 default toolchain: stable
-modify PATH variable: yes
+modify PATH variable: no
 ```
 
 Then, choose the first option `Proceed with installation`.
@@ -33,10 +40,10 @@ Then, choose the first option `Proceed with installation`.
 On 64-bits Windows systems, you also need to install the x64 target. After installation, open a terminal and type:
 
 ```
-rustup target add x86_64-pc-windows-gnu
+%USERPROFILE%\cargo\.bin\rustup.exe target add x86_64-pc-windows-gnu
 ```
 
-#### Unix systems
+#### Unix systems (GNU/Linux and macOS)
 
 On GNU/Linux platforms and other Unix systems, launch the following command into a terminal:
 
@@ -45,23 +52,41 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 ```
 Here again, chose the second option `Customize installation` and set configuration as below.
 
-For 64 bits systems:
+For GNU/Linux 64 bits systems:
 
 ```
 default host triple: x86_64-unknown-linux-gnu
 default toolchain: stable
-modify PATH variable: yes
+modify PATH variable: no
 ```
 
-For 32 bits systems:
+For GNU/Linux 32 bits systems:
 
 ```
 default host triple: i686-unknown-linux-gnu
 default toolchain: stable
-modify PATH variable: yes
+modify PATH variable: no
 ```
+
+For macOS with Intel x86-64 architecture:
+
+```
+default host triple: x86_64-apple-darwin
+default toolchain: stable
+modify PATH variable: no
+```
+
+For macOS with ARM64 architecture (Apple Silicon):
+
+```
+default host triple: aarch64-apple-darwin
+default toolchain: stable
+modify PATH variable: no
+```
+
+For other platforms, detailed information about Rust support can be found [here](https://doc.rust-lang.org/rustc/platform-support.html).
   
-After modifying configuration, choose option 1 `Proceed with installation`. After the end of installation, close and re-open your user session, or restart your computer, to update your environment variables.
+After modifying configuration, choose option 1 `Proceed with installation`.
 
 ### Package compilation and installation
 
@@ -82,3 +107,19 @@ After installation, try to load package using command
 ```
 library(baseflow)
 ```  
+
+### Uninstalling Rust platform after installation
+
+To uninstall Rust toolchain after installing the package, use the following commands:
+
+On Windows:
+
+```
+%USERPROFILE%\cargo\.bin\rustup.exe self uninstall
+```
+
+On Unix-based systems (macOS and GNU/Linux):
+  
+```
+~/cargo/.bin/rustup self uninstall
+```

@@ -1,8 +1,8 @@
 Package: baseflow
 Type: Package
 Title: Computes Hydrograph Separation
-Version: 0.12.3
-Date: 2021-01-13
+Version: 0.13.0
+Date: 2021-03-05
 Authors@R: c(
     person(given = "Antoine", family = "Pelletier", email = "antoine.pelletier@inrae.fr", role = c("cre", "aut"),
       comment = c(ORCID = "0000-0002-1286-9147")),
@@ -23,11 +23,11 @@ Encoding: UTF-8
 URL: https://gitlab.irstea.fr/HYCAR-Hydro/baseflow,
         https://doi.org/10.15454/Z9IK5N
 NeedsCompilation: yes
-Packaged: 2021-01-15 12:46:25 UTC; antoine.pelletier
+Packaged: 2021-03-05 15:20:28 UTC; antoine.pelletier
 Author: Antoine Pelletier [cre, aut] (<https://orcid.org/0000-0002-1286-9147>),
   Vazken Andréassian [ths, rev] (<https://orcid.org/0000-0001-7124-9303>),
   Olivier Delaigue [rev, ctb, dtc]
     (<https://orcid.org/0000-0002-7668-8468>)
 Maintainer: Antoine Pelletier <antoine.pelletier@inrae.fr>
 Repository: CRAN
-Date/Publication: 2021-01-15 13:40:25 UTC
+Date/Publication: 2021-03-05 16:20:05 UTC
