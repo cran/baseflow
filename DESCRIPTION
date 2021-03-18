@@ -1,8 +1,8 @@
 Package: baseflow
 Type: Package
 Title: Computes Hydrograph Separation
-Version: 0.13.0
-Date: 2021-03-05
+Version: 0.13.2
+Date: 2021-03-16
 Authors@R: c(
     person(given = "Antoine", family = "Pelletier", email = "antoine.pelletier@inrae.fr", role = c("cre", "aut"),
       comment = c(ORCID = "0000-0002-1286-9147")),
@@ -12,7 +12,7 @@ Authors@R: c(
       comment = c(ORCID = "0000-0002-7668-8468"))
   )
 Depends: R (>= 3.0.3)
-Imports: methods, graphics, airGR (>= 1.4.3.65)
+Imports: methods, graphics, airGR (>= 1.6.9.27)
 Description: Computes hydrograph separation using the conceptual automated process from Pelletier and Andreassian (2020) <doi:10.5194/hess-24-1171-2020>. Contains scalar and vectorized functions to compute correlation criterion to calibrate the baseflow separation model. 
 License: GPL-2
 SystemRequirements: GNU make, Cargo (>= 1.42.0) [the Rust package
@@ -23,11 +23,11 @@ Encoding: UTF-8
 URL: https://gitlab.irstea.fr/HYCAR-Hydro/baseflow,
         https://doi.org/10.15454/Z9IK5N
 NeedsCompilation: yes
-Packaged: 2021-03-05 15:20:28 UTC; antoine.pelletier
+Packaged: 2021-03-18 10:47:18 UTC; antoine.pelletier
 Author: Antoine Pelletier [cre, aut] (<https://orcid.org/0000-0002-1286-9147>),
   Vazken Andréassian [ths, rev] (<https://orcid.org/0000-0001-7124-9303>),
   Olivier Delaigue [rev, ctb, dtc]
     (<https://orcid.org/0000-0002-7668-8468>)
 Maintainer: Antoine Pelletier <antoine.pelletier@inrae.fr>
 Repository: CRAN
-Date/Publication: 2021-03-05 16:20:05 UTC
+Date/Publication: 2021-03-19 00:00:05 UTC

@@ -4,19 +4,19 @@ note    <- sprintf("R package version %s", version)
 
 citHeader("To cite baseflow in publications use these two references:")
 
-bibentry(bibtype="Manual",
-         title = "baseflow: Computes Hydrograph Separation",
+bibentry(bibtype= "Manual",
+         title = "{baseflow}: Computes Hydrograph Separation",
          author = personList(as.person("A. Pelletier"), as.person("V. Andréassian"), as.person("O. Delaigue")),
          publisher = "Portail Data INRAE",
-         year = "2020",
+         year = year,
          version = version,
          doi = "10.15454/Z9IK5N",
          url = "https://cran.r-project.org/package=baseflow",
          note = note,
-         textversion = paste0("Pelletier, Antoine; Andréassian, Vazken; Delaigue, Olivier, 2020, baseflow: Computes Hydrograph Separation, ", note, ", https://cran.r-project.org/package=baseflow, doi:10.15454/Z9IK5N, Portail Data INRAE")
+         textVersion = paste0("Pelletier, A.; Andréassian, V.; Delaigue, O., ", year, ", baseflow: Computes Hydrograph Separation, ", note, ", https://cran.r-project.org/package=baseflow, doi:10.15454/Z9IK5N")
          )
 
-bibentry(bibtype="Article",
+bibentry(bibtype= "Article",
          title = "Hydrograph separation: an impartial parametrisation for an imperfect method",
          author = personList(as.person("A. Pelletier"), as.person("V. Andréassian")),
          journal = "Hydrology and Earth System Sciences",
